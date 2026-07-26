@@ -1,1 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - website VinzzTyzz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            background-color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: #6e8efb;
+            color: white;
+        }
+        
+        .btn-support {
+            background: #ff6b6b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        
+        .main-content {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+        
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            color: #6e8efb;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Kalkulator Styles */
+        .calculator {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .calculator-screen {
+            width: 100%;
+            height: 60px;
+            border: none;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1.5rem;
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        
+        .calculator-keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+        
+        .calculator-btn {
+            height: 50px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .calculator-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .calculator-btn.operator {
+            background-color: #6e8efb;
+            color: white;
+        }
+        
+        .calculator-btn.operator:hover {
+            background-color: #5a7df4;
+        }
+        
+        .calculator-btn.equal {
+            background-color: #28a745;
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .calculator-btn.equal:hover {
+            background-color: #218838;
+        }
+        
+        .calculator-btn.clear {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .calculator-btn.clear:hover {
+            background-color: #c82333;
+        }
+        
+        /* Konverter Suhu Styles */
+        .converter {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .converter-group {
+            margin-bottom: 1rem;
+        }
+        
+        .converter-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .converter-input, .converter-result {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .converter-select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .converter-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #6e8efb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .converter-btn:hover {
+            background-color: #5a7df4;
+        }
+        
+        /* Text Analyzer Styles */
+        .text-analyzer {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .text-analyzer-input {
+            width: 100%;
+            height: 150px;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            resize: vertical;
+        }
+        
+        .text-analyzer-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #6e8efb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 1rem;
+        }
+        
+        .text-analyzer-btn:hover {
+            background-color: #5a7df4;
+        }
+        
+        .text-stats {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+        
+        .text-stat-item {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Password Generator Styles */
+        .password-generator {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .password-result {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-family: monospace;
+            background-color: #f8f9fa;
+        }
+        
+        .password-options {
+            margin-bottom: 1rem;
+        }
+        
+        .password-option {
+            margin-bottom: 0.5rem;
+        }
+        
+        .password-length {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .password-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #6e8efb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .password-btn:hover {
+            background-color: #5a7df4;
+        }
+        
+        /* New Tools Styles */
+        .color-picker {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .color-preview {
+            width: 100%;
+            height: 100px;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+        }
+        
+        .color-value {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-family: monospace;
+            background-color: #f8f9fa;
+        }
+        
+        /* Instagram Tool Styles */
+        .instagram-tool {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .instagram-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .instagram-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #6e8efb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 0.5rem;
+        }
+        
+        .instagram-btn:hover {
+            background-color: #5a7df4;
+        }
+        
+        .instagram-btn.red {
+            background-color: #dc3545;
+        }
+        
+        .instagram-btn.red:hover {
+            background-color: #c82333;
+        }
+        
+        .instagram-btn.green {
+            background-color: #28a745;
+        }
+        
+        .instagram-btn.green:hover {
+            background-color: #218838;
+        }
+        
+        .instagram-results {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin: 0 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">website VinzzTyzz</h1>
+            <p>Kumpulan Tools Praktis untuk Kebutuhan Digital Anda</p>
+        </div>
+    </header>
 
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">AZ</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="support.html" class="btn-support">Support Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content container">
+        <h2 class="section-title">Tools Kami</h2>
+        
+        <div class="tools-container">
+            <!-- Kalkulator -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3 class="tool-title">Kalkulator</h3>
+                
+                <div class="calculator">
+                    <input type="text" class="calculator-screen" value="" disabled />
+                    
+                    <div class="calculator-keys">
+                        <button type="button" class="calculator-btn operator" value="+">+</button>
+                        <button type="button" class="calculator-btn operator" value="-">-</button>
+                        <button type="button" class="calculator-btn operator" value="*">&times;</button>
+                        <button type="button" class="calculator-btn operator" value="/">&divide;</button>
+                        
+                        <button type="button" class="calculator-btn" value="7">7</button>
+                        <button type="button" class="calculator-btn" value="8">8</button>
+                        <button type="button" class="calculator-btn" value="9">9</button>
+                        
+                        <button type="button" class="calculator-btn" value="4">4</button>
+                        <button type="button" class="calculator-btn" value="5">5</button>
+                        <button type="button" class="calculator-btn" value="6">6</button>
+                        
+                        <button type="button" class="calculator-btn" value="1">1</button>
+                        <button type="button" class="calculator-btn" value="2">2</button>
+                        <button type="button" class="calculator-btn" value="3">3</button>
+                        
+                        <button type="button" class="calculator-btn" value="0">0</button>
+                        <button type="button" class="calculator-btn" value=".">.</button>
+                        <button type="button" class="calculator-btn clear" value="all-clear">AC</button>
+                        
+                        <button type="button" class="calculator-btn equal" value="=">=</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Konverter Suhu -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-temperature-high"></i>
+                </div>
+                <h3 class="tool-title">Konverter Suhu</h3>
+                
+                <div class="converter">
+                    <div class="converter-group">
+                        <label class="converter-label">Masukkan Suhu:</label>
+                        <input type="number" class="converter-input" id="temperature-input" placeholder="Masukkan angka">
+                    </div>
+                    
+                    <div class="converter-group">
+                        <label class="converter-label">Dari:</label>
+                        <select class="converter-select" id="from-unit">
+                            <option value="celsius">Celsius (°C)</option>
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                            <option value="kelvin">Kelvin (K)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="converter-group">
+                        <label class="converter-label">Ke:</label>
+                        <select class="converter-select" id="to-unit">
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                            <option value="celsius">Celsius (°C)</option>
+                            <option value="kelvin">Kelvin (K)</option>
+                        </select>
+                    </div>
+                    
+                    <button class="converter-btn" id="convert-btn">Konversi</button>
+                    
+                    <div class="converter-group">
+                        <label class="converter-label">Hasil:</label>
+                        <input type="text" class="converter-result" id="temperature-result" readonly>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Text Analyzer -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3 class="tool-title">Analisis Teks</h3>
+                
+                <div class="text-analyzer">
+                    <textarea class="text-analyzer-input" id="text-input" placeholder="Masukkan teks yang ingin dianalisis..."></textarea>
+                    <button class="text-analyzer-btn" id="analyze-btn">Analisis Teks</button>
+                    
+                    <div class="text-stats" id="text-stats">
+                        <div class="text-stat-item"><strong>Jumlah Karakter:</strong> <span id="char-count">0</span></div>
+                        <div class="text-stat-item"><strong>Jumlah Kata:</strong> <span id="word-count">0</span></div>
+                        <div class="text-stat-item"><strong>Jumlah Baris:</strong> <span id="line-count">0</span></div>
+                        <div class="text-stat-item"><strong>Kepadatan Kata:</strong> <span id="word-density">0</span> kata/baris</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Password Generator -->
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h3 class="tool-title">Password Generator</h3>
+                
+                <div class="password-generator">
+                    <input type="text" class="password-result" id="password-result" readonly>
+                    
+                    <div class="password-options">
+                        <div class="password-option">
+                            <label>
+                                <input type="checkbox" id="uppercase" checked>
+                                Huruf Besar (A-Z)
+                            </label>
+                        </div>
+                        <div class="password-option">
+                            <label>
+                                <input type="checkbox" id="lowercase" checked>
+                                Huruf Kecil (a-z)
+                            </label>
+                        </div>
+                        <div class="password-option">
+                            <label>
+                                <input type="checkbox" id="numbers" checked>
+                                Angka (0-9)
+                            </label>
+                        </div>
+                        <div class="password-option">
+                            <label>
+                                <input type="checkbox" id="symbols">
+                                Simbol (!@#$%^&*)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="converter-group">
+                        <label class="converter-label">Panjang Password: <span id="length-value">12</span></label>
+                        <input type="range" class="password-length" id="password-length" min="6" max="32" value="12">
+                    </div>
+                    
+                    <button class="password-btn" id="generate-btn">Generate Password</button>
+                    <button class="password-btn" id="copy-btn" style="background-color:
